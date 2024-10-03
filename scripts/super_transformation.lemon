@@ -1,0 +1,163 @@
+global u8 global.emeralds_traded
+	
+function void getTradedEmeralds()
+{
+	u8 emeralds_traded = 0
+	u8 repeat = 0
+	u32 emerlad_data = 0xffffffb2 // This is not a spelling mistake.
+	while (repeat < 7)
+	{
+		if (u8[emerlad_data] >= 2)
+		{
+			++emeralds_traded
+		}
+		emerlad_data += 1
+		repeat += 1
+	}
+	
+	global.emeralds_traded = emeralds_traded
+}
+
+function bool Character.performSuperTransformation()
+{
+	// Already super?
+	if (super.active)
+		return false
+
+	u8 possibleSuperForm = 0	// 1 for Super, 2 for Hyper
+	u8 super_emeralds_needed = SuperEmeraldAmount // The amount of Super Emeralds required to unlock Super Transformation
+	u8 chaos_emeralds_needed = ChaosEmeraldAmount // The amount of Chaos Emeralds required to unlock Super Transformation with a Super Emerald
+	u8 trade_requirement = TradeEmeraldRequirment // The amount of Chaos Emeralds required to trade before unlocking Super Transformation with a Super Emerald
+	getTradedEmeralds()
+	
+	// Tails is first player?
+	if (char.character == CHARACTER_TAILS)
+	{
+		if (!isMainCharacter(CHARACTER_TAILS))
+			return false
+
+		if (super.active.tails)
+			return false
+	}
+
+	// Special handling for Tails
+	if (char.character == CHARACTER_TAILS && !Game.getSetting(SETTING_HYPER_TAILS))
+	{
+		// Ready to get Super Tails?
+		if (global.super_emeralds >= 7)
+		{
+			possibleSuperForm = 2
+		}
+	}
+	else
+	{
+		// Can go super?
+		// 1 Super Emerald
+		if (global.super_emeralds >= 7)
+		{
+			possibleSuperForm = 2
+		}
+		else if (global.chaos_emeralds == 7 && global.traded_emeralds == 0)
+		{
+			possibleSuperForm = 1
+		}
+		else if (global.chaos_emeralds >= chaos_emeralds_needed && global.super_emeralds >= super_emeralds_needed && global.emeralds_traded >= trade_requirement)
+		{
+			possibleSuperForm = 1
+		}
+	}
+	
+	if (possibleSuperForm == 0)
+		return false
+	
+	// Check requirements
+	if (ring_counter < 50 || !hud.dirty.timer || char.control_flags != 0)	// Last check is needed e.g. for the snowboarding section
+		return false
+
+	if (char.character == CHARACTER_SONIC)
+	{
+		char.mapping_offset = 0x146816
+		char.state = char.state.TRANSFORMING
+
+		if (possibleSuperForm == 2)
+		{
+			super.active = 0xff
+			u32[0xffffcd7c] = 0x019348	// Hyper Sonic stars
+			u32[0xffffcbc0] = addressof(AfterImages.Init)	// After-images effect
+		}
+		else
+		{
+			super.active = 1
+			u32[0xffffcbc0] = 0x019156	// Super Sonic stars
+		}
+	}
+	else if (char.character == CHARACTER_TAILS)
+	{
+		super.active.tails = 1
+		char.state = char.state.TAILS_TRANSFORM
+
+		if (possibleSuperForm == 2)
+		{
+			// Call the flicky army of death
+			u32[0xffffcd7c] = 0x01a170	// Super Flickies (the first one spawns the others)
+
+		#if STANDALONE
+			super.active.tails = 0xff
+		#endif
+		}
+	}
+	else if (char.character == CHARACTER_KNUCKLES)
+	{
+		char.state = char.state.TRANSFORMING
+
+		if (possibleSuperForm == 2)
+		{
+			super.active = 0xff
+			u32[0xffffcbc0] = addressof(AfterImages.Init)	// After-images effect
+		}
+		else
+		{
+			super.active = 1
+			u32[0xffffcbc0] = 0x019156	// Super Knuckles stars
+		}
+	}
+
+#if STANDALONE
+	if (super.active == 0xff)
+	{
+		// Stop drowning music
+		if (char.drown_countdown < 12)
+		{
+			playMusic(MUSIC_CTRL_FADEOUT)
+		}
+
+		// Reset drowning countdown
+		char.drown_countdown = 30
+	}
+#endif
+
+	super.palettefx.state = 1
+	super.palettefx.timer = 0x0f
+	super.ring_dec.frames = 60
+	char.control_flags = (control_flag.DISABLE_INTERACTION | control_flag.DISABLE_UPDATE)
+
+	setSpeedCapProperties(A4)
+
+	char.invinc.countdown = 0
+	char.bonus_effect |= char.bonus.INVINCIBLE
+
+	playSound(SFX_SUPERTRANSFORM)
+#if STANDALONE
+	chooseFittingMusic()	// Usually switches to super theme
+#else
+	playMusic(MUSIC_INVINCIBLE)
+#endif
+
+#if STANDALONE
+	if (super.active == 0xff || super.active.tails == 0xff)
+	{
+		Game.setAchievementComplete(ACHIEVEMENT_GOING_HYPER)
+	}
+#endif
+	return true
+}

@@ -1,0 +1,17 @@
+global u8 SuperEmeraldAmount
+global u8 ChaosEmeraldAmount
+global u8 TradeEmeraldRequirment
+global u8 FinnSuperLifeIcon
+
+	if ((global.chaos_emeralds == 7 && global.traded_emeralds == 0) || global.super_emeralds == 7) 
+	{
+		return false
+	}
+	else
+	{
+		//include super_transformation
+		return false
+	}
+	include super_transformation
+	// !include emerald_data_hud
+	include super_lives_icon

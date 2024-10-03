@@ -1,0 +1,40 @@
+// This was used for testing, but it's useless when you have Emerald HUD, did help me find out that 'global.traded_emeralds' is essentially a boolean
+function void RenderHUD()
+{
+	u8 super_emeralds_needed = SuperEmeraldAmount
+	u8 chaos_emeralds_needed = ChaosEmeraldAmount
+	u8 trade_requirement = TradeEmeraldRequirment
+	getTradedEmeralds()
+	
+	if (DEBUG_DISABLE_HUD)
+		return
+
+	s16 baseX = global.level_started
+	if (baseX < 0)
+	{
+		baseX += 8
+		global.level_started = baseX
+	}
+	baseX += 0x0f
+
+	bool isBonusStage = (global.zone >= 0x13 && global.zone <= 0x15)
+	if (!debug_mode.state)
+	{
+		if (!isBonusStage)
+		{
+			// Required Super Emerald(s), Chaos Emerald(s), and Traded Emeralds
+			HUD.drawNumber("hud_digit_%d", super_emeralds_needed, baseX, 0x38 , 0xe000)
+			HUD.drawNumber("hud_digit_%d", chaos_emeralds_needed, baseX + 0x18, 0x38, 0xe000)
+			HUD.drawNumber("hud_digit_%d", trade_requirement, baseX + 0x28, 0x38, 0xe000)
+			
+			// Current Super Emerald(s), Chaos Emerald(s), and Traded Emeralds
+			HUD.drawNumber("hud_digit_%d", global.super_emeralds, baseX, 0x48, 0xe000)
+			HUD.drawNumber("hud_digit_%d", global.chaos_emeralds, baseX + 0x18, 0x48, 0xe000)
+			HUD.drawNumber("hud_digit_%d", global.emeralds_traded, baseX + 0x28, 0x48, 0xe000)
+			
+			// Whether you can turn super or not
+			HUD.drawNumber("hud_digit_%d", (global.chaos_emeralds >= chaos_emeralds_needed && global.super_emeralds >= super_emeralds_needed && global.emeralds_traded >= trade_requirement), baseX, 0x58, 0xe000)
+		}
+	}
+	base.RenderHUD()
+}

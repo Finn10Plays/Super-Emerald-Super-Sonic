@@ -1,0 +1,72 @@
+{
+	"Metadata":
+	{
+		"Name": "Super Emerald Super Sonic",
+		"Author": "Finn10Plays",
+		"Description": "You only need 1 or more Super Emerald(s) to become Super.",
+		"URL": "",
+		"ModVersion": "2.0",
+		"GameVersion": "24.02.02.0"
+	},
+	"Settings":
+	{
+		"Main":
+		[
+			{
+				"InternalName": "SuperEmeraldsRequired",
+				"DisplayName": "Super Emerald Requirment",
+				"Variable": "SuperEmeraldAmount",
+				"DefaultValue": "1",
+				"Category": "Transformation Options",
+				"Options":
+				{
+					"1": "1 Super Emerald",
+					"2": "2 Super Emeralds",
+					"3": "3 Super Emeralds",
+					"4": "4 Super Emeralds"
+				}
+			},
+			{
+				"InternalName": "ChaosEmeraldsRequired",
+				"DisplayName": "Chaos Emerald Requirment",
+				"Variable": "ChaosEmeraldAmount",
+				"DefaultValue": "7",
+				"Category": "Transformation Options",
+				"Options":
+				{
+					"4": "4 Chaos Emeralds",
+					"5": "5 Chaos Emeralds",
+					"6": "6 Chaos Emeralds",
+					"7": "All Chaos Emeralds"
+				}
+			},
+			{
+				"InternalName": "EmeraldsToTrade",
+				"DisplayName": "Emeralds to Trade",
+				"Variable": "TradeEmeraldRequirment",
+				"DefaultValue": "7",
+				"Category": "Transformation Options",
+				"Options":
+				{
+					"0": "None",
+					"4": "4 Emeralds",
+					"5": "5 Emeralds",
+					"6": "6 Emeralds",
+					"7": "All Emeralds"
+				}
+			},
+			{
+				"InternalName": "CustomSuperLifeIcons",
+				"DisplayName": "Super/Hyper Life Icons",
+				"Variable": "FinnSuperLifeIcon",
+				"DefaultValue": "1",
+				"Category": "Misc. Options",
+				"Options":
+				{
+					"0": "On",
+					"1": "Off"
+				}
+			}
+		]
+	}
+}

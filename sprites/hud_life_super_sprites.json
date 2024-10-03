@@ -1,0 +1,6 @@
+{
+	"hud_lives_icon_sonic_super":  { "File": "super.png", "Rect": "0,0,48,16", "Center": "0,0" },
+	"hud_lives_icon_tails_super":  { "File": "super.png", "Rect": "0,16,48,16", "Center": "0,0" },
+	"hud_lives_icon_knuckles_super":  { "File": "super.png", "Rect": "0,32,48,16", "Center": "0,0" },
+	"hud_lives_icon_miles_super":  { "File": "super.png", "Rect": "0,48,48,16", "Center": "0,0" }
+}

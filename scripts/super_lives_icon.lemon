@@ -1,0 +1,77 @@
+function string getCharacterLivesIcon(u8 character)
+{
+	u8 customLifeIcon = FinnSuperLifeIcon
+	if (customLifeIcon == 0)
+	{
+		u8 hyperLifeAnim = ((6 + super.palettefx.frame / 1) + super.palettefx.timer) / 6 % 6
+		
+		if (character == CHARACTER_SONIC)
+		{
+			if (super.active == 0xff)
+			{	
+				return stringformat("hud_lives_icon_sonic_hyper%d", hyperLifeAnim)
+				
+			}
+			else if (super.active == 1)
+			{
+				return "hud_lives_icon_sonic_super"
+			}
+			else
+			{
+				return "hud_lives_icon_sonic"
+			}
+		}
+		else if (character == CHARACTER_TAILS)
+		{
+			if (global.region_code & 0x80)
+			{
+				if (super.active.tails == 0xff)
+				{
+					return stringformat("hud_lives_icon_tails_hyper%d", hyperLifeAnim)
+				}
+				else if (super.active.tails == 1)
+				{
+					return "hud_lives_icon_tails_super"
+				}
+				else
+				{
+					return "hud_lives_icon_tails"
+				}
+			}
+			else 
+			{
+				if (super.active.tails == 0xff)
+				{
+					return stringformat("hud_lives_icon_miles_hyper%d", hyperLifeAnim)
+				}
+				else if (super.active == 1)
+				{
+					return "hud_lives_icon_miles_super"
+				}
+				else
+				{
+					return "hud_lives_icon_miles"
+				}
+			}
+		}
+		else if (character == CHARACTER_KNUCKLES)
+		{
+			if (super.active == 0xff)
+			{
+				return stringformat("hud_lives_icon_knuckles_hyper%d", hyperLifeAnim)
+			}
+			else if (super.active == 1)
+			{
+				return "hud_lives_icon_knuckles_super"
+			}
+			else
+			{
+				return "hud_lives_icon_knuckles"
+			}
+		}
+	}
+	else if (customLifeIcon == 1)
+	{
+		return (character == CHARACTER_SONIC) ? "hud_lives_icon_sonic" : (character == CHARACTER_TAILS) ? ((global.region_code & 0x80) ? "hud_lives_icon_tails" : "hud_lives_icon_miles") : "hud_lives_icon_knuckles"
+	}
+}

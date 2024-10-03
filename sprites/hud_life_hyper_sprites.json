@@ -1,0 +1,33 @@
+{
+	// HYPER SONIC
+	"hud_lives_icon_sonic_hyper0":  { "File": "hyper.png", "Rect": "0,0,48,16", "Center": "0,0" },
+	"hud_lives_icon_sonic_hyper1":  { "File": "hyper.png", "Rect": "0,16,48,16", "Center": "0,0" },
+	"hud_lives_icon_sonic_hyper2":  { "File": "hyper.png", "Rect": "0,32,48,16", "Center": "0,0" },
+	"hud_lives_icon_sonic_hyper3":  { "File": "hyper.png", "Rect": "0,48,48,16", "Center": "0,0" },
+	"hud_lives_icon_sonic_hyper4":  { "File": "hyper.png", "Rect": "0,64,48,16", "Center": "0,0" },
+	"hud_lives_icon_sonic_hyper5":  { "File": "hyper.png", "Rect": "0,80,48,16", "Center": "0,0" },
+	
+	// HYPER TAILS
+	"hud_lives_icon_tails_hyper0":  { "File": "hyper.png", "Rect": "48,0,48,16", "Center": "0,0" },
+	"hud_lives_icon_tails_hyper1":  { "File": "hyper.png", "Rect": "48,16,48,16", "Center": "0,0" },
+	"hud_lives_icon_tails_hyper2":  { "File": "hyper.png", "Rect": "48,32,48,16", "Center": "0,0" },
+	"hud_lives_icon_tails_hyper3":  { "File": "hyper.png", "Rect": "48,48,48,16", "Center": "0,0" },
+	"hud_lives_icon_tails_hyper4":  { "File": "hyper.png", "Rect": "48,64,48,16", "Center": "0,0" },
+	"hud_lives_icon_tails_hyper5":  { "File": "hyper.png", "Rect": "48,80,48,16", "Center": "0,0" },
+	
+	// HYPER KNUCKLES
+	"hud_lives_icon_knuckles_hyper0":  { "File": "hyper.png", "Rect": "96,0,48,16", "Center": "0,0" },
+	"hud_lives_icon_knuckles_hyper1":  { "File": "hyper.png", "Rect": "96,16,48,16", "Center": "0,0" },
+	"hud_lives_icon_knuckles_hyper2":  { "File": "hyper.png", "Rect": "96,32,48,16", "Center": "0,0" },
+	"hud_lives_icon_knuckles_hyper3":  { "File": "hyper.png", "Rect": "96,48,48,16", "Center": "0,0" },
+	"hud_lives_icon_knuckles_hyper4":  { "File": "hyper.png", "Rect": "96,64,48,16", "Center": "0,0" },
+	"hud_lives_icon_knuckles_hyper5":  { "File": "hyper.png", "Rect": "96,80,48,16", "Center": "0,0" },
+	
+	// HYPER TAILS EU EDITION
+	"hud_lives_icon_miles_hyper0":  { "File": "hyper.png", "Rect": "144,0,48,16", "Center": "0,0" },
+	"hud_lives_icon_miles_hyper1":  { "File": "hyper.png", "Rect": "144,16,48,16", "Center": "0,0" },
+	"hud_lives_icon_miles_hyper2":  { "File": "hyper.png", "Rect": "144,32,48,16", "Center": "0,0" },
+	"hud_lives_icon_miles_hyper3":  { "File": "hyper.png", "Rect": "144,48,48,16", "Center": "0,0" },
+	"hud_lives_icon_miles_hyper4":  { "File": "hyper.png", "Rect": "144,64,48,16", "Center": "0,0" },
+	"hud_lives_icon_miles_hyper5":  { "File": "hyper.png", "Rect": "144,80,48,16", "Center": "0,0" },
+}
